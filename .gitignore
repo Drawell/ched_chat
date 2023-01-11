@@ -21,3 +21,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# images and db
+ched_api/images/
+*.db
+
+
+# environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# vs code
+.vscode
+
+# python
+.idea
+__pycache__
