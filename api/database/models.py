@@ -13,7 +13,7 @@ class Ched(Base):
     name = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False)
     reg_date = Column(DateTime, default=func.now(), nullable=False)
-    is_confirmed = Column(Boolean, nullable=False)
+    is_confirmed = Column(Boolean, default=False, nullable=False)
     confirm_date = Column(DateTime)
     last_seen_date = Column(DateTime)
 

@@ -15,10 +15,10 @@ class CurrentChed(BaseChed):
 
 
 class LoginInfo(BaseModel):
-    email: str = Field(None, max_length=50)
-    password: str = Field(None, max_length=30)
+    email: str = Field(None, min_length=5, max_length=50)
+    password: str = Field(None, min_length=5, max_length=30)
 
 
-class RegisterInfo(LoginInfo):
-    second_password: str
-    name: str
+class RegistrationInfo(LoginInfo):
+    second_password: str = Field(None, min_length=5, max_length=30)
+    name: str = Field(None, min_length=5, max_length=50)
