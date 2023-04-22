@@ -1,8 +1,8 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Text, DateTime
-from sqlalchemy.orm import relationship
+from pydantic import BaseModel
+from sqlalchemy import Boolean, Column,  Integer, String, Text, DateTime
 from sqlalchemy.sql import func
 
-from .database import Base
+from api.database import Base
 
 
 class Ched(Base):
@@ -27,3 +27,15 @@ class ChedPasswd(Base):
     passwd_hash = Column(Text, nullable=False)
     sdate = Column(DateTime, default=func.now(), nullable=False)
     edate = Column(DateTime)
+
+
+class BaseChed(BaseModel):
+    ched_id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class CurrentChed(BaseChed):
+    email: str

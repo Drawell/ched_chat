@@ -8,8 +8,10 @@ from fastapi.param_functions import Body
 from sqlalchemy.orm import Session
 
 from api.authentication import authenticate_ched, add_auth_cookie_to_response
-from api.database import crud, db_dep
-from api.database.schemas import CurrentChed, LoginInfo, RegistrationInfo
+from api.database import db_dep
+from api.crud import ched_crud
+from api.models.auth_model import LoginInfo, RegistrationInfo
+from api.models.ched_model import CurrentChed
 
 
 auth_router = APIRouter(prefix="/api", tags=["authentication"],)
@@ -40,8 +42,8 @@ async def login_for_access_token(
     registration_info: Annotated[RegistrationInfo, Body],
     db: Session = Depends(db_dep)
 ):
-    mayby_ched_name = crud.find_ched(db, registration_info.name)
-    mayby_ched_email = crud.find_ched(db, registration_info.email)
+    mayby_ched_name = ched_crud.find_ched(db, registration_info.name)
+    mayby_ched_email = ched_crud.find_ched(db, registration_info.email)
     if mayby_ched_name or mayby_ched_email:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="Already registered")
@@ -49,8 +51,8 @@ async def login_for_access_token(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="Not same passwords")
 
-    ched = crud.create_ched(db, registration_info.name,
-                            registration_info.email, registration_info.password)
+    ched = ched_crud.create_ched(db, registration_info.name,
+                                 registration_info.email, registration_info.password)
 
     json_compatible_item_data = jsonable_encoder(
         ched,  include=CurrentChed.__fields__)

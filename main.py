@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 from api.authentication import get_cur_ched_dep
-from api.database.schemas import CurrentChed
+from api.models.ched_model import CurrentChed
 from api.routers import auth_router
 
 app = FastAPI()

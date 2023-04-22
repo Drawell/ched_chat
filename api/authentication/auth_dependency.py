@@ -5,7 +5,8 @@ from jose import JWTError
 from sqlalchemy.orm.session import Session
 from starlette.requests import Request
 
-from api.database import crud, db_dep
+from api.database import db_dep
+from api.crud import ched_crud
 from .securety_module import decode_access_token
 from .token_model import TokenData
 from .auth_constants import ACCESS_COOKIE_NAME
@@ -49,7 +50,7 @@ async def get_cur_ched_dep(token: TokenData = Depends(auth_dep), db: Session = D
     if ched_id is None:
         raise CREDENTIALS_EXCEPTION
 
-    ched = crud.get_ched(db, ched_id)
+    ched = ched_crud.get_ched(db, ched_id)
 
     if ched is None:
         raise CREDENTIALS_EXCEPTION

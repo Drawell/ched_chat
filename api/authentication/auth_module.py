@@ -1,17 +1,18 @@
 from sqlalchemy.orm import Session
 
-from api.database import crud, models
+from api.crud import ched_crud
+from api.models.ched_model import Ched
 from .securety_module import create_access_token, verify_password
 from .auth_constants import ACCESS_COOKIE_NAME, ACCESS_TOKEN_EXPIRE_MINUTES
 from .token_model import TokenData
 
 
-def authenticate_ched(db: Session, login_email: str, password: str) -> models.Ched | None:
-    ched = crud.find_ched(db, login_email)
+def authenticate_ched(db: Session, login_email: str, password: str) -> Ched | None:
+    ched = ched_crud.find_ched(db, login_email)
     if not ched:
         return None
 
-    passwd = crud.get_ched_passowrd(db, ched.ched_id)
+    passwd = ched_crud.get_ched_passowrd(db, ched.ched_id)
     if passwd and not verify_password(password, passwd.passwd_hash):
         return None
 
