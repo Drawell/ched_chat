@@ -2,7 +2,7 @@ from sqlalchemy import and_, or_
 from sqlalchemy.orm import Session
 
 from .models import Ched, ChedPasswd
-from api.authantication import get_password_hash
+from api.authentication import get_password_hash
 
 
 def get_ched(db: Session, ched_id: int) -> Ched | None:
