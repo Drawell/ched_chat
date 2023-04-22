@@ -1,9 +1,9 @@
-from api.authantication.token_model import TokenData
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from jose import jwt
 
 from .auth_constants import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
+from .token_model import TokenData
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

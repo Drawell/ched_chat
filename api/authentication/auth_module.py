@@ -1,9 +1,9 @@
-from api.authantication.token_model import TokenData
 from sqlalchemy.orm import Session
 
 from api.database import crud, models
 from .securety_module import create_access_token, verify_password
 from .auth_constants import ACCESS_COOKIE_NAME, ACCESS_TOKEN_EXPIRE_MINUTES
+from .token_model import TokenData
 
 
 def authenticate_ched(db: Session, login_email: str, password: str) -> models.Ched | None:
