@@ -15,11 +15,6 @@ app.include_router(auth_router)
 app.include_router(chat_router)
 
 
-@app.get("/api/get_cur_ched", response_model=CurrentChed)
-async def get_cur_ched(cur_ched: CurrentChed = Depends(get_cur_ched_dep)):
-    return cur_ched
-
-
 if os.environ.get("DEV"):
     app.add_middleware(CORSMiddleware,
                        allow_origins=[

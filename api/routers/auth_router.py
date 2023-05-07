@@ -1,3 +1,4 @@
+from api.authentication.auth_dependency import get_cur_ched_dep
 from typing import Annotated
 
 from starlette.responses import JSONResponse
@@ -59,3 +60,8 @@ async def login_for_access_token(
     response = JSONResponse(content=json_compatible_item_data)
     add_auth_cookie_to_response(response, ched)
     return response
+
+
+@auth_router.get("/api/get_cur_ched", response_model=CurrentChed)
+async def get_cur_ched(cur_ched: CurrentChed = Depends(get_cur_ched_dep)):
+    return cur_ched
