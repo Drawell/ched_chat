@@ -35,3 +35,16 @@ export async function reqRegister(
     return null
   }
 }
+
+export async function reqGetCurChed() {
+  try {
+    const response = await axios.get('/api/get_cur_ched')
+    if (response.status === 200) {
+      return response.data
+    } else {
+      return null
+    }
+  } catch {
+    return null
+  }
+}
