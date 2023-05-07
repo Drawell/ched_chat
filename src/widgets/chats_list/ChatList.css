@@ -1,0 +1,22 @@
+.chat-list {
+  padding: 8px;
+}
+
+.chat-list-item {
+  --selectd: False;
+
+  display: flex;
+  padding: 4px;
+  column-gap: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-list-bg-active {
+  color: rgb(255, 255, 255);
+  background-color: rgb(51, 144, 236) !important;
+}
+
+.chat-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
