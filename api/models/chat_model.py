@@ -69,5 +69,5 @@ class ChedChat(BaseModel):
     cur_ched_id: int
     name: str
     type_id: int
-    other_ched_id: int
+    other_ched_id: int | None
     notify: bool

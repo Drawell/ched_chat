@@ -7,11 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.authentication import get_cur_ched_dep
 from api.models.ched_model import CurrentChed
-from api.routers import auth_router
+from api.routers import auth_router, chat_router
 
 app = FastAPI()
 
 app.include_router(auth_router)
+app.include_router(chat_router)
 
 
 @app.get("/api/get_cur_ched", response_model=CurrentChed)
