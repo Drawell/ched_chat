@@ -74,10 +74,10 @@ class CodeGen:
     def generate_code(self):
         result = ''
         result += self.generate_name()
-        result += self.indent + self.generate_post_name()
+        result += self.generate_post_name()
         for attr in self.attrs:
             result += self.indent + self.generate_attr(attr)
-        result += self.indent + self.generate_post_attrs()
+        result += self.generate_post_attrs()
         return result
 
     def generate_name(self):
@@ -115,7 +115,7 @@ class SQLALchemyCodeGen(CodeGen):
         return f'class {class_name}(Base):\n'
 
     def generate_post_name(self):
-        return f"__tablename__ = '{self.table_name}'\n\n"
+        return f"{self.indent}__tablename__ = '{self.table_name}'\n\n"
 
     def generate_attr(self, attr: CommonAttribute):
         type_str = SQLALchemyCodeGen.types_map.get(attr.attr_type)
@@ -137,6 +137,12 @@ class SQLALchemyCodeGen(CodeGen):
 
 
 class PydanticCodeGen(CodeGen):
+    types_map = {
+        'int': 'Integer',
+        'str': 'String',
+        'bool': 'Boolean',
+        'datetime': 'DateTime',
+    }
 
     def __init__(self, table_name: str, attrs: list[CommonAttribute]):
         super().__init__(table_name, attrs, indent='    ')
@@ -152,7 +158,38 @@ class PydanticCodeGen(CodeGen):
         return f'class {class_name}(BaseModel):\n'
 
     def generate_post_name(self):
-        return f'class Config:\n{self.indent * 2}orm_mode = True\n\n'
+        return f'{self.indent}class Config:\n{self.indent * 2}orm_mode = True\n\n'
 
     def generate_attr(self, attr: CommonAttribute):
         return f'{attr.name}: {attr.attr_type}\n'
+
+
+class TypeScriptCodeGen(CodeGen):
+    types_map = {
+        'int': 'Number',
+        'str': 'String',
+        'bool': 'Boolean',
+        'datetime': 'String',
+    }
+
+    def __init__(self, table_name: str, attrs: list[CommonAttribute]):
+        super().__init__(table_name, attrs, indent='  ')
+
+    def generate_name(self):
+        if len(self.table_name) < 3:
+            class_name = 'export interface TMP' + '{\n'
+        else:
+            class_name_snake = self.table_name[3:]
+            words = class_name_snake.split('_')
+            class_name = ''.join(x.title() for x in words)
+
+        return f'export interface I{class_name}' + ' {\n'
+
+    def generate_attr(self, attr: CommonAttribute):
+        type_str = TypeScriptCodeGen.types_map.get(attr.attr_type)
+        nullable_str = '?' if attr.nullable else ''
+        attr_code = f'{attr.name}{nullable_str}: {type_str}\n'
+        return attr_code
+
+    def generate_post_attrs(self):
+        return '}'
