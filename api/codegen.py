@@ -166,10 +166,10 @@ class PydanticCodeGen(CodeGen):
 
 class TypeScriptCodeGen(CodeGen):
     types_map = {
-        'int': 'Number',
-        'str': 'String',
-        'bool': 'Boolean',
-        'datetime': 'String',
+        'int': 'number',
+        'str': 'string',
+        'bool': 'boolean',
+        'datetime': 'string',
     }
 
     def __init__(self, table_name: str, attrs: list[CommonAttribute]):
