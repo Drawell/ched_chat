@@ -62,6 +62,6 @@ async def login_for_access_token(
     return response
 
 
-@auth_router.get("/api/get_cur_ched", response_model=CurrentChed)
+@auth_router.get("/get_cur_ched", response_model=CurrentChed)
 async def get_cur_ched(cur_ched: CurrentChed = Depends(get_cur_ched_dep)):
     return cur_ched

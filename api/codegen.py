@@ -57,7 +57,7 @@ def parse_column(sql_column: str) -> CommonAttribute:
     attr_type = sql_types_map.get(attr_type.strip())
 
     size = None
-    if len(column_attributes) >= 6:
+    if len(column_attributes) >= 6 and column_attributes[5].replace('"', ''):
         size = int(column_attributes[5])
 
     attr = CommonAttribute(name, attr_type, default_value, nullable, size)
