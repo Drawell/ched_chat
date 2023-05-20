@@ -42,3 +42,7 @@ venv.bak/
 # python
 .idea
 __pycache__
+sendbox.py
+
+# data base
+*.db
