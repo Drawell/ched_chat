@@ -58,7 +58,7 @@ def parse_column(sql_column: str) -> CommonAttribute:
 
     size = None
     if len(column_attributes) >= 6 and column_attributes[5].replace('"', ''):
-        size = int(column_attributes[5])
+        size = int(column_attributes[5].replace('"', ''))
 
     attr = CommonAttribute(name, attr_type, default_value, nullable, size)
 
@@ -172,8 +172,9 @@ class TypeScriptCodeGen(CodeGen):
         'datetime': 'string',
     }
 
-    def __init__(self, table_name: str, attrs: list[CommonAttribute]):
+    def __init__(self, table_name: str, attrs: list[CommonAttribute], every_requered=False):
         super().__init__(table_name, attrs, indent='  ')
+        self.every_requered = every_requered
 
     def generate_name(self):
         if len(self.table_name) < 3:
@@ -187,7 +188,7 @@ class TypeScriptCodeGen(CodeGen):
 
     def generate_attr(self, attr: CommonAttribute):
         type_str = TypeScriptCodeGen.types_map.get(attr.attr_type)
-        nullable_str = '?' if attr.nullable else ''
+        nullable_str = '?' if attr.nullable and not self.every_requered else ''
         attr_code = f'{attr.name}{nullable_str}: {type_str}\n'
         return attr_code
 
