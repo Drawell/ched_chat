@@ -1,6 +1,5 @@
 from typing import Annotated
-from fastapi import Depends, HTTPException, status, APIRouter, Body
-from fastapi.param_functions import Query
+from fastapi import Depends,   APIRouter,  Query, Path
 
 from sqlalchemy.orm import session
 
@@ -11,9 +10,9 @@ from api.crud import message_crud
 message_router = APIRouter(prefix="/api", tags=["message"])
 
 
-@message_router.get("/get_chat_messages", response_model=list[Message])
+@message_router.get("/get_chat_messages/{chat_id}", response_model=list[Message])
 async def get_chat_messages(
-    chat_id: int,
+    chat_id: Annotated[int, Path()],
     offset: Annotated[int | None, Query()] = 0,
     limit: Annotated[int | None, Query()] = 30,
     db: session = Depends(db_dep)
