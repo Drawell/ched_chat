@@ -4,6 +4,16 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  background-color: var(--color-body-back);
+
+  --color-text: #fff;
+  --color-body-back: #5e5e5e;
+  --color-back-gray: #5a5a5a;
+  --color-back-gray-dark: #4d4d4d;
+  --color-back-blue-dark: #283385;
+  --color-cyan-active: #51fff1;
+  --color-red-acive: #ff4b34;
 }
 
 code {
@@ -22,4 +32,16 @@ code {
   row-gap: 0.5rem;
   max-width: 300px;
   margin: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }

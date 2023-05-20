@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from 'auth/AuthProvider'
 import ChatsList from 'widgets/chats_list/ChatsList'
+import ChatWidget from '../../widgets/chat_widget/ChatWidget'
 
 const ChatsPage: React.FC = () => {
   const { curChed, signout } = useAuth()
@@ -23,7 +24,7 @@ const ChatsPage: React.FC = () => {
 
       <ChatsList selectedId={chatId} onSelectChat={handleSelectChat} />
 
-      {chatId ? <div>Current chat id: {chatId}</div> : <div>Select chat</div>}
+      {chatId ? <ChatWidget chatId={chatId} /> : <div>Select chat</div>}
     </div>
   )
 }
