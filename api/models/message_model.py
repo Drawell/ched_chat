@@ -17,6 +17,17 @@ class TMessage(Base):
     cr_date = Column(DateTime, default=func.now())
 
 
+class VWMessage(Base):
+    __tablename__ = 'vw_message'
+
+    message_id = Column(Integer, primary_key=True)
+    ched_id = Column(Integer)
+    chat_id = Column(Integer)
+    content = Column(String)
+    cr_date = Column(DateTime)
+    ched_name = Column(String(50))
+
+
 class Message(BaseModel):
     class Config:
         orm_mode = True
@@ -26,3 +37,10 @@ class Message(BaseModel):
     chat_id: int
     content: str
     cr_date: datetime
+    ched_name: str
+
+
+class MessageForCreate(BaseModel):
+    ched_id: int
+    chat_id: int
+    content: str
