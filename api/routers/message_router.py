@@ -21,10 +21,10 @@ async def get_chat_messages(
     return messages
 
 
-@message_router.post("/create_message", response_model=Message)
+@message_router.post("/create_message", response_model=Message | None)
 async def get_chat_messages(
     message: MessageForCreate,
     db: session = Depends(db_dep)
 ):
-    messages = message_crud.create_message(db, message)
-    return messages
+    message = message_crud.create_message(db, message)
+    return message
