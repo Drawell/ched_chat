@@ -16,11 +16,9 @@ const ChatsList: React.FC<IChatsListProps> = ({ selectedId, onSelectChat }) => {
   useEffect(() => {
     let mount = true
     const request = async () => {
-      if (curChed) {
-        const chats = await reqGetChatsList(curChed.ched_id)
-        if (mount) {
-          setChats(chats)
-        }
+      const chats = await reqGetChatsList(curChed.ched_id)
+      if (mount) {
+        setChats(chats)
       }
     }
 

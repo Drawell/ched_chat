@@ -4,10 +4,16 @@ import { reqGetCurChed, reqLogin, reqRegister } from './AuthRequests'
 import { useNavigate } from 'react-router'
 import { URL_PAGE_LOGIN } from 'app_route/PageUrls'
 
+const anonymChed: ICurrentChed = {
+  ched_id: -1,
+  name: '',
+  email: '',
+}
+
 type TLoginResponceCallback = (success: boolean, status?: string) => void
 
 interface IAuthContext {
-  curChed: ICurrentChed | null
+  curChed: ICurrentChed
   signin: (login: string, password: string, callback?: TLoginResponceCallback) => void
   register: (
     name: string,
@@ -23,7 +29,7 @@ let AuthContext = React.createContext<IAuthContext>(null!)
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
-  const [curChed, setCurChed] = React.useState<ICurrentChed | null>(null)
+  const [curChed, setCurChed] = React.useState<ICurrentChed>(anonymChed)
 
   const signin = async (
     login: string,
@@ -59,7 +65,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
     })
 
-    setCurChed(null)
+    setCurChed(anonymChed)
     navigate('/' + URL_PAGE_LOGIN)
     callback && callback()
   }

@@ -17,7 +17,7 @@ const ChatsPage: React.FC = () => {
 
   return (
     <div>
-      {curChed ? <h5>Curent chad is {curChed?.name}</h5> : <h5>Need to login</h5>}
+      <h5>Curent chad is {curChed.name}</h5>
       <form>
         <button onClick={handleLogout}>Выход</button>
       </form>

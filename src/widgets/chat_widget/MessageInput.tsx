@@ -24,12 +24,10 @@ const MessageInput: React.FC<IMessageInputProps> = ({ chatId, onAddMessage }) =>
 
   const handleSendMessage = (event: React.MouseEvent<HTMLButtonElement>) => {
     const request = async () => {
-      if (curChed) {
-        const message = await reqSendMessage(curChed?.ched_id, chatId, text)
-        if (message) {
-          onAddMessage(message)
-          setText('')
-        }
+      const message = await reqSendMessage(curChed?.ched_id, chatId, text)
+      if (message) {
+        onAddMessage(message)
+        setText('')
       }
     }
 

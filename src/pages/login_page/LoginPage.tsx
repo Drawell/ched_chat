@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className='login-container'>
-      {formType == 'login' ? (
+      {formType === 'login' ? (
         <LoginForm onLoggedIn={handleEnter} onSwitchToRegister={handleSwitchToRegister} />
       ) : (
         <RegistrationForm
