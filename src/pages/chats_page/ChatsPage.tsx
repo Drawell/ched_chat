@@ -3,6 +3,8 @@ import ChatsList from 'widgets/chats_list/ChatsList'
 import ChatWidget from '../../widgets/chat_widget/ChatWidget'
 import TopNavigation from '../../widgets/top_navigation/TopNavigation'
 
+import './ChatPage.css'
+
 const ChatsPage: React.FC = () => {
   const [chatId, setChatId] = useState<number | null>(null)
 
@@ -11,12 +13,15 @@ const ChatsPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <TopNavigation />
+    <div className='chat-page'>
+      <div className='chat-page-left'>
+        <TopNavigation />
+        <ChatsList selectedId={chatId} onSelectChat={handleSelectChat} />
+      </div>
 
-      <ChatsList selectedId={chatId} onSelectChat={handleSelectChat} />
-
-      {chatId ? <ChatWidget chatId={chatId} /> : <div>Select chat</div>}
+      <div className='chat-page-right'>
+        {chatId ? <ChatWidget chatId={chatId} /> : <div>Select chat</div>}
+      </div>
     </div>
   )
 }

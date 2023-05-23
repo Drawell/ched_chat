@@ -1,22 +1,26 @@
 .chat-list {
-  padding: 8px;
+  padding: 5px 5px 2px 2px;
 }
 
 .chat-list-item {
   --selectd: False;
 
   display: flex;
-  padding: 4px;
+  padding: 6px 20px;
   column-gap: 8px;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+}
+.chat-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .chat-list-bg-active {
-  color: rgb(255, 255, 255);
-  background-color: rgb(51, 144, 236) !important;
+  color: white;
+  background-color: var(--color-bg-blue-translucent);
 }
 
-.chat-list-item:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.chat-list-bg-active:hover {
+  color: white;
+  background-color: var(--color-bg-blue-translucent);
 }

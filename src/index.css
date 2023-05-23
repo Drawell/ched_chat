@@ -4,14 +4,23 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1rem;
+
   color: var(--color-text);
   background-color: var(--color-body-back);
 
   --color-text: #fff;
   --color-body-back: #5e5e5e;
-  --color-back-gray: #5a5a5a;
-  --color-back-gray-dark: #4d4d4d;
-  --color-back-blue-dark: #283385;
+  --color-bg-gray-light: #999999;
+  --color-bg-gray: #555;
+  --color-bg-gray-dark: #333;
+  --color-bg-gray-darker: #222;
+
+  --color-bg-purpule: #330033;
+  --color-bg-blue-dark: #000066;
+  --color-bg-blue-translucent: #00009999;
+
   --color-cyan-active: #51fff1;
   --color-red-active: #ff4b34;
 }
@@ -44,4 +53,27 @@ code {
 
 .justify-center {
   justify-content: center;
+}
+
+a {
+  color: var(--color-cyan-active);
+}
+a:active {
+  color: var(--color-red-active);
+}
+
+textarea,
+button,
+input {
+  background-color: var(--color-bg-blue-translucent);
+  border-radius: 10px;
+  color: white;
+  padding: 4px 10px;
+
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input:-internal-autofill-selected {
+  background-color: var(--color-bg-blue-translucent) !important;
 }

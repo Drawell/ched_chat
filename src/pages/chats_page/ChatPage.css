@@ -1,0 +1,14 @@
+.chat-page {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 100%;
+}
+
+.chat-page-left,
+.chat-page-right {
+  height: 100vh;
+}
+
+.chat-page-left {
+  width: 30vw;
+}

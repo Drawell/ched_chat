@@ -1,12 +1,13 @@
 .nav {
   display: grid;
-  background-color: #3c3c3c;
+  background-color: var(--color-bg-gray-dark);
   padding: 10px;
-  box-shadow: 4px 4px 4px #7a7a7a;
+  box-shadow: 0px 4px 2px var(--color-bg-gray-darker);
 }
 
 .nav-left {
   justify-self: flex-end;
   display: flex;
   column-gap: 1rem;
+  align-items: center;
 }

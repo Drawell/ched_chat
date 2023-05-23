@@ -39,6 +39,7 @@ const ChatWidget: React.FC<IChatWidgetProps> = ({ chatId }) => {
 
   return (
     <div className='chat-widget'>
+      <div className='chat-widget-background' />
       <div className='chat-widget-content'>
         <MessageList messages={messages} />
         <Spin show={isLoading} className='d-flex justify-center' />

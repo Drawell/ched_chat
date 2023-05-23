@@ -21,11 +21,11 @@
 }
 
 .message-item-holder.left {
-  --back-color: var(--color-back-gray-dark);
+  --back-color: var(--color-bg-gray-dark);
   --justify-position: left;
 }
 
 .message-item-holder.right {
-  --back-color: var(--color-back-blue-dark);
+  --back-color: var(--color-bg-blue-dark);
   --justify-position: right;
 }
