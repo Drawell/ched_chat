@@ -1,0 +1,12 @@
+.nav {
+  display: grid;
+  background-color: #3c3c3c;
+  padding: 10px;
+  box-shadow: 4px 4px 4px #7a7a7a;
+}
+
+.nav-left {
+  justify-self: flex-end;
+  display: flex;
+  column-gap: 1rem;
+}
