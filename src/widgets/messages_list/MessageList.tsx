@@ -15,6 +15,7 @@ const MessageList: React.FC<IMessageListProps> = ({ messages }) => {
     <div className='message-list'>
       {messages.map((message) => (
         <MessageListItem
+          key={message.message_id}
           message={message}
           position={curChed.ched_id === message.ched_id ? 'right' : 'left'}
         />

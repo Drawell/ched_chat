@@ -21,7 +21,6 @@ const ChatWidget: React.FC<IChatWidgetProps> = ({ chatId }) => {
       const messages = await reqGetMessages(chatId)
       if (mount) {
         setMessages(messages)
-        console.log(messages)
         setIsLoading(false)
       }
     }
@@ -41,7 +40,9 @@ const ChatWidget: React.FC<IChatWidgetProps> = ({ chatId }) => {
     <div className='chat-widget'>
       <div className='chat-widget-background' />
       <div className='chat-widget-content'>
-        <MessageList messages={messages} />
+        <div className='scroll-container'>
+          <MessageList messages={messages} />
+        </div>
         <Spin show={isLoading} className='d-flex justify-center' />
         <MessageInput chatId={chatId} onAddMessage={handleAddMessage} />
       </div>

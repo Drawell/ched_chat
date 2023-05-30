@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   font-size: 1rem;
+  line-height: 20px;
 
   color: var(--color-text);
   background-color: var(--color-body-back);
@@ -16,6 +17,7 @@ body {
   --color-bg-gray: #555;
   --color-bg-gray-dark: #333;
   --color-bg-gray-darker: #222;
+  --color-bg-gray-dark-translucent: #333d;
 
   --color-bg-purpule: #330033;
   --color-bg-blue-dark: #000066;
@@ -23,6 +25,9 @@ body {
 
   --color-cyan-active: #51fff1;
   --color-red-active: #ff4b34;
+
+  --color-magenta: #cc0066;
+  --color-blue-dark: #000066;
 }
 
 code {
@@ -55,6 +60,29 @@ code {
   justify-content: center;
 }
 
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+    180deg,
+    var(--color-magenta) 0%,
+    var(--color-blue-dark) 99%
+  );
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+  border-radius: 100px;
+}
+
+.scroll-container {
+  overflow: auto;
+  padding-right: 10px;
+}
+
 a {
   color: var(--color-cyan-active);
 }
@@ -72,6 +100,27 @@ input {
 
   font-family: inherit;
   font-size: 1rem;
+  box-shadow: 0px 0px 20px var(--color-cyan-active);
+}
+
+textarea:target,
+textarea:hover,
+button:hover {
+  box-shadow: 0px 0px 20px var(--color-red-active);
+}
+
+textarea,
+input {
+  cursor: text;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  background-color: var(--color-back-gray);
+  box-shadow: 0px 0px 20px var(--color-red-active);
 }
 
 input:-internal-autofill-selected {

@@ -39,7 +39,9 @@ const LoginForm: React.FC<ILoginFormProps> = ({ onLoggedIn, onSwitchToRegister }
       <label htmlFor='paswd'>Пароль</label>
       <input id='paswd' type='password' value={paswd} onChange={handleChangePaswd} />
 
-      <input type='button' value='Вход' onClick={handleLogin} />
+      <button type='button' onClick={handleLogin}>
+        Вход
+      </button>
 
       <a href='#' onClick={handleSwitchToRegister}>
         Зарегистрироваться
